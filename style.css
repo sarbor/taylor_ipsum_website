@@ -1,0 +1,85 @@
+body {
+    font-family: 'Aileron';
+    margin: 0;
+    padding: 20px;
+}
+
+@font-face {
+    font-family: 'Aileron';
+    src: url('fonts/Aileron-Bold.otf') format('opentype');
+    font-weight: 900;
+    font-style: bold;
+}
+
+header {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: 'Aileron';
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    width: 50px;
+    padding: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#generated-text {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 5px;
+    width: 100%;
+    height: 300px;
+    resize: none;
+    overflow: auto;
+    text-align: left;
+}
+
+.container form {
+    justify-content: space-between;
+}
+
+.container form input[type="number"],
+.container form button {
+    flex: 1;
+    margin-right: 10px;
+}
