@@ -1,13 +1,17 @@
+import { albumToLyrics } from "./constants.js"
+
 window.addEventListener('DOMContentLoaded', () => {
-    const folderName = 'images'
-    const images = ['ts.jpg', 'fearless.jpg', 'speak_now.jpg', 'red.jpg',
-        '1989.jpg', 'reputation.jpg', 'lover.jpg', 'folklore.jpg',
-        'evermore.jpg', 'midnights.jpg'];
-
-    const randomIndex = Math.floor(Math.random() * images.length);
-    const imageUrl = `url(${folderName}/${images[randomIndex]})`;
-
+    const albumArtFolder = 'images'
+   
+    var albumNames = Object.keys(albumToLyrics);
+    var randomIndex = Math.floor(Math.random() * albumNames.length);
+    
+    var randomAlbum = albumNames[randomIndex];
+    const imageUrl = `url(${albumArtFolder}/${randomAlbum}.jpg)`;
     document.body.style.backgroundImage = imageUrl;
+
+    const textarea = document.getElementById('generated-text');
+    textarea.placeholder = albumToLyrics[randomAlbum];
 });
 
 const form = document.getElementById('generator-form');
