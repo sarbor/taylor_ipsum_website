@@ -24,7 +24,7 @@ function generateLoremIpsum(e) {
     const paragraphsInput = document.getElementById('paragraphs');
     const numParagraphs = paragraphsInput.value;
 
-    fetch(`http://127.0.0.1:8787/lyrics?numberOfParagraphs=${numParagraphs}`)
+    fetch(`https://pscale-demo.sarboroy99.workers.dev/lyrics?numberOfParagraphs=${numParagraphs}`)
         .then(response => response.json())
         .then(data => {
             const concatenatedText = data.lyrics.join('\n\n');
