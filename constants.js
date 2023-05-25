@@ -11,4 +11,4 @@ export const albumToLyrics = {
     "midnights": "Summer went away\r\nStill the yearning stays\r\nI play it cool with the best of them\r\nI wait patiently\r\nHe\'s gonna notice me\r\nIt\'s okay, we\'re the best of friends\r\nAnyway\r\n\r\nI hear it in your voice\r\nYou\'re smoking with your boys\r\nI touch my phone as if it\'s your face\r\nI didn\'t choose this town\r\nI dream of getting out\r\nThere\'s just one who could make me stay\r\nAll my days\r\n\r\nFrom sprinkler splashes to fireplace ashes\r\nI waited ages to see you there\r\nI search the party of better bodies\r\nJust to learn that you never cared\r\nYou\'re on your own, kid\r\nYou always have been"
 }
 
-export const endpointUrl = "pscale-demo.sarbo.workers.dev"
+export const endpointUrl = "https://pscale-demo.sarbo.workers.dev"

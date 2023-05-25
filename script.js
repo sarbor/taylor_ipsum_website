@@ -23,8 +23,9 @@ function generateLoremIpsum(e) {
 
     const paragraphsInput = document.getElementById('paragraphs');
     const numParagraphs = paragraphsInput.value;
+    const route = `${endpointUrl}/lyrics?numberOfParagraphs=${numParagraphs}`
 
-    fetch(`${endpointUrl}/lyrics?numberOfParagraphs=${numParagraphs}`)
+    fetch(route)
         .then(response => response.json())
         .then(data => {
             const concatenatedText = data.lyrics.join('\n\n');
