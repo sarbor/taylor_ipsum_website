@@ -1,4 +1,4 @@
-import { albumToLyrics } from "./constants.js"
+import { albumToLyrics, endpointUrl } from "./constants.js"
 
 window.addEventListener('DOMContentLoaded', () => {
     const albumArtFolder = 'images'
@@ -24,7 +24,7 @@ function generateLoremIpsum(e) {
     const paragraphsInput = document.getElementById('paragraphs');
     const numParagraphs = paragraphsInput.value;
 
-    fetch(`https://pscale-demo.sarboroy99.workers.dev/lyrics?numberOfParagraphs=${numParagraphs}`)
+    fetch(`${endpointUrl}/lyrics?numberOfParagraphs=${numParagraphs}`)
         .then(response => response.json())
         .then(data => {
             const concatenatedText = data.lyrics.join('\n\n');
