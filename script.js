@@ -14,6 +14,9 @@ window.addEventListener('DOMContentLoaded', () => {
     textarea.placeholder = albumToLyrics[randomAlbum];
 });
 
+const checkbox = document.getElementById('randomize');
+
+
 const form = document.getElementById('generator-form');
 form.addEventListener('submit', generateLoremIpsum);
 const generatedText = document.getElementById('generated-text');
@@ -23,7 +26,11 @@ function generateLoremIpsum(e) {
 
     const paragraphsInput = document.getElementById('paragraphs');
     const numParagraphs = paragraphsInput.value;
-    const route = `${endpointUrl}/lyrics?numberOfParagraphs=${numParagraphs}`
+    var route = `${endpointUrl}/lyrics?numberOfParagraphs=${numParagraphs}`
+
+    if(checkbox.checked){
+        route = `${endpointUrl}/lyrics?numberOfParagraphs=${numParagraphs}?shouldRandomizeLyrics=true`
+    }
 
     fetch(route)
         .then(response => response.json())
