@@ -321,3 +321,53 @@ button:active {
     width: 100%;
   }
 }
+
+/* ===== Copy Button ===== */
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #4a5568;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  color: #2d3748;
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
+
+.copy-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.copy-btn.copied {
+  background: rgba(72, 187, 120, 0.2);
+  color: #2f855a;
+  border-color: rgba(72, 187, 120, 0.4);
+}
