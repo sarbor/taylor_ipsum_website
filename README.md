@@ -13,7 +13,8 @@ This website is currently hosted using Cloudflare Pages here: https://taylor-ips
 
 ## Screenshots
 
-![Screenshot 1](https://raw.githubusercontent.com/sarbor/taylor_ipsum_website/main/website_screenshots/1989-website.png)
+![1989 view](website_screenshots/1989-website.png)
+![Speak Now view](website_screenshots/speak-now-website.png)
 
 ## Getting Started
 
