@@ -6,7 +6,7 @@ body {
 
 @font-face {
     font-family: 'Aileron';
-    src: url('fonts/Aileron-Bold.otf') format('opentype');
+    src: url('/fonts/Aileron-Bold.otf') format('opentype');
     font-weight: 900;
     font-style: bold;
 }
@@ -27,11 +27,6 @@ header {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-*/ label {
-    font-weight: bold;
-    margin-right: 10px;
 }
 
 input[type="number"] {
@@ -56,7 +51,7 @@ input[type="number"] {
 .container form input[type="number"],
 .container form button {
     flex: 1;
-    margin-right: 5x;
+    margin-right: 5px;
 }
 
 /* Styling for the checkbox label */
@@ -66,7 +61,6 @@ label {
     margin-bottom: 5px;
     margin-right: 10px;
     margin-left: 10px;
-
 }
 
 /* Styling for the checkbox */

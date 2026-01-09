@@ -1,35 +1,12 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Taylor Ipsum Generator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <div class="webpage">
-        <header>
-            <h1>Taylor Ipsum Generator</h1>
-        </header>
-
-        <div class="container">
-            <form id="generator-form">
-                <div class="form-row">
-                    <label for="paragraphs">Number of Paragraphs:</label>
-                    <input type="number" id="paragraphs" name="paragraphs" min="1" max="1597" value="3">
-
-                    <label for="randomize">Randomize:</label>
-                    <input type="checkbox" id="randomize" name="randomize">
-                </div>
-
-                <div class="form-row">
-                    <button type="submit">Generate</button>
-                </div>
-            </form>
-            <textarea id="generated-text" placeholder="Hello World"></textarea>
-        </div>
-    </div>
-    <script type="module" src="script.js"></script>
-</body>
-
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
