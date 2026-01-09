@@ -1,6 +1,6 @@
 # Taylor Ipsum Generator
 
-The Taylor Ipsum Generator is a Lorem Ipsum generator that uses Taylor Swift lyrics to create placeholder text for your projects. This project is built using React and Vite.
+The Taylor Ipsum Generator is a Lorem Ipsum generator that uses Taylor Swift lyrics to create placeholder text for your projects. This project is built using React and Vite and deployed on Cloudflare Pages
 
 The project gets the Taylor Swift lyrics using the [Taylor Swift API](https://github.com/sarbor/taylor_swift_api).
 
