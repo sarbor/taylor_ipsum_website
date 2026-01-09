@@ -5,11 +5,14 @@ type LyricsOutputProps = {
 
 export function LyricsOutput({ value, placeholder }: LyricsOutputProps) {
   return (
-    <textarea
-      id="generated-text"
-      placeholder={placeholder}
-      value={value}
-      readOnly
-    />
+    <div className="output-section">
+      <label className="output-label">Generated Lyrics</label>
+      <textarea
+        id="generated-text"
+        placeholder={placeholder}
+        value={value}
+        readOnly
+      />
+    </div>
   );
 }

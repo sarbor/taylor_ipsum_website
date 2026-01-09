@@ -34,6 +34,7 @@ export default function App() {
     <div className="webpage">
       <header>
         <h1>Taylor Ipsum Generator</h1>
+        <p className="subtitle">Placeholder text powered by Taylor Swift lyrics</p>
       </header>
 
       <div className="container">

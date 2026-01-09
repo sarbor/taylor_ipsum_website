@@ -18,29 +18,33 @@ export function GeneratorForm({
   return (
     <form id="generator-form" onSubmit={onSubmit}>
       <div className="form-row">
-        <label htmlFor="paragraphs">Number of Paragraphs:</label>
-        <input
-          type="number"
-          id="paragraphs"
-          name="paragraphs"
-          min="1"
-          max="1597"
-          value={numParagraphs}
-          onChange={(event) => onNumParagraphsChange(event.target.value)}
-        />
+        <div className="input-group">
+          <label htmlFor="paragraphs">Paragraphs</label>
+          <input
+            type="number"
+            id="paragraphs"
+            name="paragraphs"
+            min="1"
+            max="1597"
+            value={numParagraphs}
+            onChange={(event) => onNumParagraphsChange(event.target.value)}
+          />
+        </div>
 
-        <label htmlFor="randomize">Randomize:</label>
-        <input
-          type="checkbox"
-          id="randomize"
-          name="randomize"
-          checked={randomize}
-          onChange={(event) => onRandomizeChange(event.target.checked)}
-        />
+        <div className="input-group">
+          <label htmlFor="randomize">Randomize</label>
+          <input
+            type="checkbox"
+            id="randomize"
+            name="randomize"
+            checked={randomize}
+            onChange={(event) => onRandomizeChange(event.target.checked)}
+          />
+        </div>
       </div>
 
-      <div className="form-row">
-        <button type="submit">Generate</button>
+      <div className="button-row">
+        <button type="submit">✨ Generate Lyrics</button>
       </div>
     </form>
   );
