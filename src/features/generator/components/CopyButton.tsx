@@ -8,13 +8,18 @@ export function CopyButton({ text }: CopyButtonProps) {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = async () => {
-        if (!text) return;
+        console.log('CopyButton: clicked', { text });
+        if (!text) {
+            console.warn('CopyButton: No text to copy');
+            return;
+        }
         try {
             await navigator.clipboard.writeText(text);
+            console.log('CopyButton: writeText success');
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
-            console.error('Failed to copy text: ', err);
+            console.error('CopyButton: Failed to copy text: ', err);
         }
     };
 

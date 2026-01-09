@@ -6,11 +6,13 @@ type LyricsOutputProps = {
 };
 
 export function LyricsOutput({ value, placeholder }: LyricsOutputProps) {
+  const copyText = value.trim() ? value : placeholder;
+
   return (
     <div className="output-section">
       <label className="output-label">Generated Lyrics</label>
       <div className="textarea-wrapper">
-        <CopyButton text={value} />
+        <CopyButton text={copyText} />
         <textarea
           id="generated-text"
           placeholder={placeholder}
