@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react';
-import { albumToLyrics, endpointUrl } from './constants.js';
+import { useEffect, useState, type FormEvent } from 'react';
+import { albumToLyrics, endpointUrl } from './constants';
 
 const albumNames = Object.keys(albumToLyrics);
 
-function getRandomAlbum() {
+type LyricsResponse = {
+  lyrics: string[];
+};
+
+function getRandomAlbum(): string {
   const randomIndex = Math.floor(Math.random() * albumNames.length);
   return albumNames[randomIndex];
 }
@@ -20,7 +24,7 @@ export default function App() {
     setPlaceholder(albumToLyrics[randomAlbum]);
   }, []);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmedValue = numParagraphs.toString().trim();
@@ -36,7 +40,7 @@ export default function App() {
       if (!response.ok) {
         throw new Error(`Request failed with status ${response.status}`);
       }
-      const data = await response.json();
+      const data = (await response.json()) as LyricsResponse;
       const concatenatedText = data.lyrics.join('\n\n');
       setGeneratedText(concatenatedText);
     } catch (error) {
