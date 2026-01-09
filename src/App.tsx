@@ -1,7 +1,7 @@
 import { useState, type FormEventHandler } from 'react';
 import { GeneratorForm } from './components/GeneratorForm';
 import { LyricsOutput } from './components/LyricsOutput';
-import { fetchLyrics } from './api/lyrics';
+import { useLyricsQuery } from './hooks/useLyricsQuery';
 import { useRandomAlbumBackground } from './hooks/useRandomAlbumBackground';
 
 const DEFAULT_PARAGRAPHS = '3';
@@ -10,24 +10,28 @@ const FALLBACK_PARAGRAPHS = '1';
 export default function App() {
   const [numParagraphs, setNumParagraphs] = useState(DEFAULT_PARAGRAPHS);
   const [randomize, setRandomize] = useState(false);
-  const [generatedText, setGeneratedText] = useState('');
+  const [shouldFetch, setShouldFetch] = useState(false);
+
   const { placeholder } = useRandomAlbumBackground();
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  const normalizedParagraphs = numParagraphs.trim() || FALLBACK_PARAGRAPHS;
+
+  const { data, isLoading, isError, error } = useLyricsQuery({
+    numberOfParagraphs: normalizedParagraphs,
+    randomize,
+    enabled: shouldFetch,
+  });
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    setShouldFetch(true);
+  };
 
-    const normalizedParagraphs = numParagraphs.trim() || FALLBACK_PARAGRAPHS;
-
-    try {
-      const lyrics = await fetchLyrics({
-        numberOfParagraphs: normalizedParagraphs,
-        randomize,
-      });
-      setGeneratedText(lyrics.join('\n\n'));
-    } catch (error) {
-      console.error('Error:', error);
-      setGeneratedText('Error retrieving lyrics');
-    }
+  const getOutputText = (): string => {
+    if (isLoading) return 'Loading...';
+    if (isError) return `Error: ${error?.message || 'Failed to fetch lyrics'}`;
+    if (data) return data.join('\n\n');
+    return '';
   };
 
   return (
@@ -45,7 +49,7 @@ export default function App() {
           onRandomizeChange={setRandomize}
           onSubmit={handleSubmit}
         />
-        <LyricsOutput placeholder={placeholder} value={generatedText} />
+        <LyricsOutput placeholder={placeholder} value={getOutputText()} />
       </div>
     </div>
   );
