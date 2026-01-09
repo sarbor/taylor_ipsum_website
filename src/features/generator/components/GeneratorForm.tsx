@@ -1,4 +1,5 @@
 import type { FormEventHandler } from 'react';
+import { MAX_PARAGRAPHS, MIN_PARAGRAPHS } from '../../../config';
 
 type GeneratorFormProps = {
   numParagraphs: string;
@@ -24,8 +25,8 @@ export function GeneratorForm({
             type="number"
             id="paragraphs"
             name="paragraphs"
-            min="1"
-            max="1597"
+            min={MIN_PARAGRAPHS}
+            max={MAX_PARAGRAPHS}
             value={numParagraphs}
             onChange={(event) => onNumParagraphsChange(event.target.value)}
           />

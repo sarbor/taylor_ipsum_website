@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchLyrics } from '../api/lyrics';
+import { fetchLyrics } from '../../../api/lyrics';
 
 type UseLyricsQueryParams = {
     numberOfParagraphs: string;

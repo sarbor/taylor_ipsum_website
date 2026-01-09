@@ -1,11 +1,9 @@
 import { useState, type FormEventHandler } from 'react';
-import { GeneratorForm } from './components/GeneratorForm';
-import { LyricsOutput } from './components/LyricsOutput';
-import { useLyricsQuery } from './hooks/useLyricsQuery';
-import { useRandomAlbumBackground } from './hooks/useRandomAlbumBackground';
-
-const DEFAULT_PARAGRAPHS = '3';
-const FALLBACK_PARAGRAPHS = '1';
+import { GeneratorForm } from './features/generator/components/GeneratorForm';
+import { LyricsOutput } from './features/generator/components/LyricsOutput';
+import { useLyricsQuery } from './features/generator/hooks/useLyricsQuery';
+import { useRandomAlbumBackground } from './features/generator/hooks/useRandomAlbumBackground';
+import { DEFAULT_PARAGRAPHS, FALLBACK_PARAGRAPHS } from './config';
 
 export default function App() {
   const [numParagraphs, setNumParagraphs] = useState(DEFAULT_PARAGRAPHS);

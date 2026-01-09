@@ -1,4 +1,4 @@
-import { endpointUrl } from '../constants';
+import { endpointUrl } from '../config';
 
 type LyricsResponse = {
   lyrics: string[];

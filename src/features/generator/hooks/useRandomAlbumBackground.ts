@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { albumNames, albumToLyrics, type AlbumKey } from '../constants';
+import { albumNames, albumToLyrics, type AlbumKey } from '../../../data/albums';
 
 const getRandomAlbumKey = (): AlbumKey => {
   const randomIndex = Math.floor(Math.random() * albumNames.length);

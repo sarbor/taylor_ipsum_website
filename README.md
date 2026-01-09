@@ -33,7 +33,10 @@ The project consists of the following files:
 - `src/App.tsx`: The main React component for the generator UI.
 - `src/main.tsx`: The React entry point.
 - `src/style.css`: The styling for the web page.
-- `src/constants.ts`: Album-to-lyrics mapping and the API endpoint URL.
+- `src/features/generator`: Generator UI components and hooks.
+- `src/api/lyrics.ts`: Lyrics API client.
+- `src/config.ts`: API endpoint and generator defaults.
+- `src/data/albums.ts`: Album-to-lyrics mapping.
 - `public/images`: Taylor album cover images.
 - `public/fonts`: Aileron font files.
 
