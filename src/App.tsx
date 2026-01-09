@@ -8,25 +8,23 @@ import { DEFAULT_PARAGRAPHS, FALLBACK_PARAGRAPHS } from './config';
 export default function App() {
   const [numParagraphs, setNumParagraphs] = useState(DEFAULT_PARAGRAPHS);
   const [randomize, setRandomize] = useState(false);
-  const [shouldFetch, setShouldFetch] = useState(false);
 
   const { placeholder } = useRandomAlbumBackground();
 
   const normalizedParagraphs = numParagraphs.trim() || FALLBACK_PARAGRAPHS;
 
-  const { data, isLoading, isError, error } = useLyricsQuery({
+  const { data, isFetching, isError, error, refetch } = useLyricsQuery({
     numberOfParagraphs: normalizedParagraphs,
     randomize,
-    enabled: shouldFetch,
   });
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    setShouldFetch(true);
+    void refetch();
   };
 
   const getOutputText = (): string => {
-    if (isLoading) return 'Loading...';
+    if (isFetching) return 'Loading...';
     if (isError) return `Error: ${error?.message || 'Failed to fetch lyrics'}`;
     if (data) return data.join('\n\n');
     return '';
