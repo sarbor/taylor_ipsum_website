@@ -4,8 +4,6 @@ The Taylor Ipsum Generator is a Lorem Ipsum generator that uses Taylor Swift lyr
 
 The project gets the Taylor Swift lyrics using the [Taylor Swift API](https://github.com/sarbor/taylor_swift_api).
 
-Fun Fact: Almost all of this code (including this README file) was generated with ChatGPT.
-
 Every time you open the website you are greeted with a random Taylor album cover and corresponding lyrics from that album.
 
 ## View Live
