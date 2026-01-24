@@ -45,7 +45,7 @@ export function GeneratorForm({
       </div>
 
       <div className="button-row">
-        <button type="submit">✨ Generate Lyrics</button>
+        <button type="submit">Generate Lyrics</button>
       </div>
     </form>
   );
