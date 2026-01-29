@@ -5,11 +5,12 @@ import { useLyricsQuery } from './features/generator/hooks/useLyricsQuery';
 import { useRandomAlbumBackground } from './features/generator/hooks/useRandomAlbumBackground';
 import { DEFAULT_PARAGRAPHS, FALLBACK_PARAGRAPHS } from './config';
 
+
 export default function App() {
   const [numParagraphs, setNumParagraphs] = useState(DEFAULT_PARAGRAPHS);
   const [randomize, setRandomize] = useState(false);
 
-  const { placeholder } = useRandomAlbumBackground();
+  const { albumKey, placeholder } = useRandomAlbumBackground();
 
   const normalizedParagraphs = numParagraphs.trim() || FALLBACK_PARAGRAPHS;
 
@@ -33,8 +34,8 @@ export default function App() {
   return (
     <div className="webpage">
       <header>
-        <h1>Taylor Ipsum Generator</h1>
-        <p className="subtitle">Placeholder text powered by Taylor Swift lyrics</p>
+        <h1>Taylor Ipsum</h1>
+        <p className="subtitle">Placeholder text, but make it Taylor</p>
       </header>
 
       <div className="container">
