@@ -11,8 +11,8 @@ This website is currently hosted using Cloudflare Pages here: https://taylor-ips
 
 ## Screenshots
 
-![1989 view](website_screenshots/1989-website.png)
-![Speak Now view](website_screenshots/speak-now-website.png)
+<img width="1920" height="972" alt="image" src="https://github.com/user-attachments/assets/b6c43b84-5f3a-491d-aa65-c297c573a1bc" />
+<img width="1920" height="968" alt="image" src="https://github.com/user-attachments/assets/2bdc12a6-145c-44c0-beab-df5a7a4a20b6" />
 
 ## Getting Started
 
