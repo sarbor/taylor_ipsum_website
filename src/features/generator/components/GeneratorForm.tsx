@@ -74,12 +74,6 @@ export function GeneratorForm({
       <button type="submit" className="ticket-btn" disabled={isLoading}>
         {isLoading ? 'Pressing the record…' : 'Generate lyrics ✦'}
       </button>
-
-      <p className="kbd-hint" aria-hidden="true">
-        <kbd>{isMac ? '⌘' : 'Ctrl'}</kbd> <kbd>↵</kbd> also prints
-      </p>
     </form>
   );
 }
-
-const isMac = typeof navigator !== 'undefined' && /mac/i.test(navigator.platform);

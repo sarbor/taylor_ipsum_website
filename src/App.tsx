@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEventHandler } from 'react';
+import { useState, type FormEventHandler } from 'react';
 import { GeneratorForm } from './features/generator/components/GeneratorForm';
 import { LyricsOutput } from './features/generator/components/LyricsOutput';
 import { useLyricsQuery } from './features/generator/hooks/useLyricsQuery';
@@ -19,18 +19,6 @@ export default function App() {
     numberOfParagraphs: normalizedParagraphs,
     randomize,
   });
-
-  // Desktop shortcut: ⌘/Ctrl + Enter generates from anywhere
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
-        event.preventDefault();
-        if (!isFetching) void refetch();
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [refetch, isFetching]);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();

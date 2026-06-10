@@ -51,6 +51,8 @@ The project consists of the following files:
 - `src/data/albums.ts`: Album lyrics, titles, and release years.
 - `public/images`: Taylor album cover images.
 - `public/fonts`: Aileron font files.
+- `public/og.jpg`: Social card shown in link previews (iMessage, WhatsApp, Slack, social), wired up via Open Graph and Twitter Card tags in `index.html`.
+- `public/favicon.svg` / `public/apple-touch-icon.png`: Site icons.
 
 ## Environment Variables
 
