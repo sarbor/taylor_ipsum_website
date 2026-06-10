@@ -101,6 +101,10 @@ body::before {
   animation: tickerScroll 48s linear infinite;
 }
 
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
 .ticker-group {
   display: flex;
 }
@@ -138,6 +142,7 @@ body::before {
 
 /* ===== Masthead ===== */
 header {
+  position: relative;
   margin-bottom: 72px;
   animation: riseIn 0.9s var(--ease-out) 0.1s backwards;
 }
@@ -191,6 +196,27 @@ h1::after {
   transform-origin: left center;
   margin: 10px 0 0 10px;
   animation: riseIn 0.9s var(--ease-out) 0.35s backwards;
+}
+
+/* Handwritten margin note pointing at today's era (desktop only) */
+.header-note {
+  display: none;
+  position: absolute;
+  right: 6px;
+  bottom: 2px;
+  font-family: var(--font-script);
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  transform: rotate(-2.5deg);
+  text-decoration: underline wavy var(--accent) 1px;
+  text-underline-offset: 7px;
+  animation: riseIn 0.9s var(--ease-out) 0.55s backwards;
+}
+
+@media (min-width: 900px) {
+  .header-note {
+    display: block;
+  }
 }
 
 /* ===== Main grid ===== */
@@ -400,6 +426,34 @@ input[type='checkbox']:checked::after {
   cursor: progress;
 }
 
+/* Keyboard shortcut hint (desktop only) */
+.kbd-hint {
+  display: none;
+  margin-top: 2px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+
+.kbd-hint kbd {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  padding: 2px 6px;
+  border: 1px solid var(--ink-faint);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  background: var(--sheet);
+}
+
+@media (min-width: 900px) {
+  .kbd-hint {
+    display: block;
+  }
+}
+
 /* ===== Polaroid ===== */
 .polaroid {
   width: min(248px, 78%);
@@ -426,6 +480,8 @@ input[type='checkbox']:checked::after {
 
 .polaroid img {
   width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
   display: block;
   filter: saturate(0.94) contrast(1.02);
 }
@@ -692,6 +748,32 @@ footer a:hover {
   .control-column {
     position: sticky;
     top: 28px;
+  }
+}
+
+/* ===== Wide screens: let the lyric sheet breathe ===== */
+@media (min-width: 1280px) {
+  .webpage {
+    max-width: 1240px;
+  }
+
+  .container {
+    gap: 96px;
+  }
+
+  #generated-text {
+    height: clamp(460px, 64vh, 700px);
+    padding: 48px 56px 48px 96px;
+    font-size: 1.125rem;
+    line-height: 2.05;
+  }
+
+  .sheet::before {
+    left: 62px;
+  }
+
+  .polaroid {
+    width: min(264px, 78%);
   }
 }
 
