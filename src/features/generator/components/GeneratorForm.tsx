@@ -1,9 +1,10 @@
 import type { FormEventHandler } from 'react';
-import { MAX_PARAGRAPHS, MIN_PARAGRAPHS } from '../../../config';
+import { FALLBACK_PARAGRAPHS, MAX_PARAGRAPHS, MIN_PARAGRAPHS } from '../../../config';
 
 type GeneratorFormProps = {
   numParagraphs: string;
   randomize: boolean;
+  isLoading: boolean;
   onNumParagraphsChange: (value: string) => void;
   onRandomizeChange: (value: boolean) => void;
   onSubmit: FormEventHandler<HTMLFormElement>;
@@ -12,15 +13,33 @@ type GeneratorFormProps = {
 export function GeneratorForm({
   numParagraphs,
   randomize,
+  isLoading,
   onNumParagraphsChange,
   onRandomizeChange,
   onSubmit,
 }: GeneratorFormProps) {
+  const stepParagraphs = (delta: number) => {
+    const parsed = parseInt(numParagraphs, 10);
+    const current = Number.isNaN(parsed) ? Number(FALLBACK_PARAGRAPHS) : parsed;
+    const next = Math.min(MAX_PARAGRAPHS, Math.max(MIN_PARAGRAPHS, current + delta));
+    onNumParagraphsChange(String(next));
+  };
+
   return (
     <form id="generator-form" onSubmit={onSubmit}>
-      <div className="form-row">
-        <div className="input-group">
-          <label htmlFor="paragraphs">Paragraphs</label>
+      <p className="section-heading">Place your order</p>
+
+      <div className="field">
+        <label htmlFor="paragraphs">№ of paragraphs</label>
+        <div className="stepper">
+          <button
+            type="button"
+            className="step-btn"
+            onClick={() => stepParagraphs(-1)}
+            aria-label="One fewer paragraph"
+          >
+            −
+          </button>
           <input
             type="number"
             id="paragraphs"
@@ -30,23 +49,31 @@ export function GeneratorForm({
             value={numParagraphs}
             onChange={(event) => onNumParagraphsChange(event.target.value)}
           />
-        </div>
-
-        <div className="input-group">
-          <label htmlFor="randomize">Randomize</label>
-          <input
-            type="checkbox"
-            id="randomize"
-            name="randomize"
-            checked={randomize}
-            onChange={(event) => onRandomizeChange(event.target.checked)}
-          />
+          <button
+            type="button"
+            className="step-btn"
+            onClick={() => stepParagraphs(1)}
+            aria-label="One more paragraph"
+          >
+            +
+          </button>
         </div>
       </div>
 
-      <div className="button-row">
-        <button type="submit">Generate Lyrics</button>
+      <div className="field">
+        <label htmlFor="randomize">Shuffle the verses</label>
+        <input
+          type="checkbox"
+          id="randomize"
+          name="randomize"
+          checked={randomize}
+          onChange={(event) => onRandomizeChange(event.target.checked)}
+        />
       </div>
+
+      <button type="submit" className="ticket-btn" disabled={isLoading}>
+        {isLoading ? 'Pressing the record…' : 'Generate lyrics ✦'}
+      </button>
     </form>
   );
 }

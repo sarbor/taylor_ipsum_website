@@ -2,15 +2,16 @@ import { useState, type FormEventHandler } from 'react';
 import { GeneratorForm } from './features/generator/components/GeneratorForm';
 import { LyricsOutput } from './features/generator/components/LyricsOutput';
 import { useLyricsQuery } from './features/generator/hooks/useLyricsQuery';
-import { useRandomAlbumBackground } from './features/generator/hooks/useRandomAlbumBackground';
+import { useRandomAlbum } from './features/generator/hooks/useRandomAlbum';
+import { albumMeta, albumNames } from './data/albums';
 import { DEFAULT_PARAGRAPHS, FALLBACK_PARAGRAPHS } from './config';
-
 
 export default function App() {
   const [numParagraphs, setNumParagraphs] = useState(DEFAULT_PARAGRAPHS);
   const [randomize, setRandomize] = useState(false);
 
-  const { albumKey, placeholder } = useRandomAlbumBackground();
+  const { albumKey, placeholder } = useRandomAlbum();
+  const album = albumMeta[albumKey];
 
   const normalizedParagraphs = numParagraphs.trim() || FALLBACK_PARAGRAPHS;
 
@@ -25,29 +26,89 @@ export default function App() {
   };
 
   const getOutputText = (): string => {
-    if (isFetching) return 'Loading...';
-    if (isError) return `Error: ${error?.message || 'Failed to fetch lyrics'}`;
+    if (isFetching) return 'Spinning the records…';
+    if (isError)
+      return `Something went wrong: ${error?.message || 'failed to fetch lyrics'}. Hit generate to try again.`;
     if (data) return data.join('\n\n');
     return '';
   };
 
-  return (
-    <div className="webpage">
-      <header>
-        <h1>Taylor Ipsum</h1>
-        <p className="subtitle">Placeholder text, but make it Taylor</p>
-      </header>
+  const wordCount = data ? data.join(' ').trim().split(/\s+/).filter(Boolean).length : 0;
+  const stats =
+    data && !isFetching && !isError
+      ? `${data.length} ${data.length === 1 ? 'paragraph' : 'paragraphs'} · ${wordCount} ${
+          wordCount === 1 ? 'word' : 'words'
+        }`
+      : undefined;
 
-      <div className="container">
-        <GeneratorForm
-          numParagraphs={numParagraphs}
-          randomize={randomize}
-          onNumParagraphsChange={setNumParagraphs}
-          onRandomizeChange={setRandomize}
-          onSubmit={handleSubmit}
-        />
-        <LyricsOutput placeholder={placeholder} value={getOutputText()} />
+  return (
+    <>
+      <div className="ticker" aria-hidden="true">
+        <div className="ticker-track">
+          {[0, 1].map((copy) => (
+            <span className="ticker-group" key={copy}>
+              {albumNames.map((key) => (
+                <span className="ticker-item" key={key}>
+                  {albumMeta[key].title}
+                  <span className="ticker-star">✦</span>
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
+
+      <div className="webpage">
+        <header>
+          <div className="masthead-rule">
+            <span>The Placeholder Press</span>
+            <span>Vol. 13 · № 89</span>
+          </div>
+          <h1>
+            Taylor <em>Ipsum</em>
+          </h1>
+          <p className="subtitle">placeholder text, but make it Taylor</p>
+        </header>
+
+        <main className="container">
+          <div className="control-column">
+            <GeneratorForm
+              numParagraphs={numParagraphs}
+              randomize={randomize}
+              isLoading={isFetching}
+              onNumParagraphsChange={setNumParagraphs}
+              onRandomizeChange={setRandomize}
+              onSubmit={handleSubmit}
+            />
+
+            <figure className="polaroid">
+              <span className="polaroid-tape" aria-hidden="true" />
+              <img src={`/images/${albumKey}.jpg`} alt={`${album.title} album cover`} />
+              <figcaption>
+                {album.title}, {album.year}
+              </figcaption>
+            </figure>
+          </div>
+
+          <LyricsOutput
+            placeholder={placeholder}
+            value={getOutputText()}
+            isLoading={isFetching}
+            stats={stats}
+          />
+        </main>
+
+        <footer>
+          <a
+            href="https://github.com/sarbor/taylor_swift_api"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Powered by the Taylor Swift API ↗
+          </a>
+          <span>long story short, it&rsquo;s placeholder text</span>
+        </footer>
+      </div>
+    </>
   );
 }

@@ -15,3 +15,17 @@ export const albumToLyrics = {
 export type AlbumKey = keyof typeof albumToLyrics;
 
 export const albumNames = Object.keys(albumToLyrics) as AlbumKey[];
+
+export const albumMeta: Record<AlbumKey, { title: string; year: string }> = {
+    taylor_swift: { title: 'Taylor Swift', year: '2006' },
+    fearless: { title: 'Fearless', year: '2008' },
+    speak_now: { title: 'Speak Now', year: '2010' },
+    red: { title: 'Red', year: '2012' },
+    '1989': { title: '1989', year: '2014' },
+    reputation: { title: 'reputation', year: '2017' },
+    lover: { title: 'Lover', year: '2019' },
+    folklore: { title: 'folklore', year: '2020' },
+    evermore: { title: 'evermore', year: '2020' },
+    midnights: { title: 'Midnights', year: '2022' },
+    life_of_a_showgirl: { title: 'The Life of a Showgirl', year: '2025' },
+};

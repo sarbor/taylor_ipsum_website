@@ -4,15 +4,27 @@ The Taylor Ipsum Generator is a Lorem Ipsum generator that uses Taylor Swift lyr
 
 The project gets the Taylor Swift lyrics using the [Taylor Swift API](https://github.com/sarbor/taylor_swift_api).
 
-Every time you open the website you are greeted with a random Taylor album cover and corresponding lyrics from that album.
+Every visit draws a random Taylor album. Its cover appears as a tape-mounted polaroid, the placeholder lyrics come from that album, and the album's era color tints the whole page — the subtitle ink, the button shadow, the lyric sheet's margin rule, and the background wash.
+
+## Design
+
+The interface is styled as **"The Lyric Press"** — vintage music ephemera, like a lyric booklet from a record shop:
+
+- Warm grained-paper background with an era-colored wash
+- A ticker tape across the top scrolling all of the album names
+- A newspaper masthead above the title, with a handwritten script subtitle
+- A ticket-stub generate button with notched, perforated edges
+- A punch-holed lyric sheet with a rubber-stamp copy button and a word-count slip
+- Typography: [Fraunces](https://fonts.google.com/specimen/Fraunces) for display and lyrics, [Courier Prime](https://fonts.google.com/specimen/Courier+Prime) for labels, and [La Belle Aurore](https://fonts.google.com/specimen/La+Belle+Aurore) for handwritten annotations
 
 ## View Live
+
 This website is currently hosted using Cloudflare Pages here: https://taylor-ipsum-website.pages.dev
 
 ## Screenshots
 
-<img width="1920" height="972" alt="image" src="https://github.com/user-attachments/assets/b6c43b84-5f3a-491d-aa65-c297c573a1bc" />
-<img width="1920" height="968" alt="image" src="https://github.com/user-attachments/assets/2bdc12a6-145c-44c0-beab-df5a7a4a20b6" />
+![1989 view](website_screenshots/1989-website.png)
+![Speak Now view with generated lyrics](website_screenshots/speak-now-website.png)
 
 ## Getting Started
 
@@ -27,14 +39,16 @@ To get started with the project, follow these steps:
 
 The project consists of the following files:
 
-- `index.html`: The Vite HTML entry point.
-- `src/App.tsx`: The main React component for the generator UI.
+- `index.html`: The Vite HTML entry point (page metadata and font loading).
+- `src/App.tsx`: The main React component — ticker, masthead, generator layout, polaroid, and footer.
 - `src/main.tsx`: The React entry point.
 - `src/style.css`: The styling for the web page.
-- `src/features/generator`: Generator UI components and hooks.
+- `src/features/generator/components`: Generator UI components (`GeneratorForm`, `LyricsOutput`, `CopyButton`).
+- `src/features/generator/hooks/useLyricsQuery.ts`: React Query hook for fetching lyrics.
+- `src/features/generator/hooks/useRandomAlbum.ts`: Picks the random album and applies its era accent colors.
 - `src/api/lyrics.ts`: Lyrics API client.
 - `src/config.ts`: API endpoint and generator defaults.
-- `src/data/albums.ts`: Album-to-lyrics mapping.
+- `src/data/albums.ts`: Album lyrics, titles, and release years.
 - `public/images`: Taylor album cover images.
 - `public/fonts`: Aileron font files.
 
@@ -54,6 +68,7 @@ Build settings for Cloudflare Pages:
 
 To generate Taylor Swift lorem ipsum text, follow these steps:
 
-1. Enter the number of paragraphs you want to generate in the "Number of Paragraphs" input field.
-2. Click the "Generate" button to generate the lorem ipsum text.
-3. The generated text will appear in the textarea below the form.
+1. Set the number of paragraphs with the − / + stepper (or type a number).
+2. Optionally flip on "shuffle the verses" to randomize the lyrics.
+3. Click the "Generate Lyrics" ticket to print your text onto the lyric sheet.
+4. Hit the "copy" stamp in the corner of the sheet to copy everything to your clipboard.
