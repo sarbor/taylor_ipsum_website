@@ -41,6 +41,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -701,7 +702,7 @@ footer a:hover {
   }
 
   header {
-    margin-bottom: 48px;
+    margin-bottom: 44px;
   }
 
   .masthead-rule {
@@ -728,29 +729,75 @@ footer a:hover {
     width: min(232px, 84%);
   }
 
+  /* Comfortable thumb targets */
+  .step-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.15rem;
+  }
+
+  .copy-btn {
+    top: 12px;
+    right: 12px;
+    padding: 10px 14px;
+  }
+
+  /* Slimmer gutter so lyrics get the width */
   #generated-text {
-    height: min(420px, 58vh);
-    padding: 60px 24px 32px 70px;
+    height: min(440px, 60vh);
+    padding: 52px 20px 28px 56px;
     font-size: 1rem;
   }
 
   .sheet::before {
-    left: 46px;
+    left: 40px;
   }
 
   .hole-strip {
-    left: 12px;
+    left: 10px;
   }
 
   .sheet-hole {
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
   }
 
   footer {
     margin-top: 56px;
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+/* ===== Phones: stack the masthead like a magazine cover ===== */
+@media (max-width: 600px) {
+  h1 {
+    font-size: clamp(4rem, 20vw, 5.5rem);
+    margin-top: 24px;
+  }
+
+  h1 em {
+    display: block;
+  }
+
+  /* The em becomes a block, so move the star inside it */
+  h1::after {
+    content: none;
+  }
+
+  h1 em::after {
+    content: '✦';
+    display: inline-block;
+    font-style: normal;
+    font-size: 0.24em;
+    vertical-align: super;
+    margin-left: 0.45em;
+    animation: spinStar 14s linear infinite;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+    margin-left: 6px;
   }
 }
 

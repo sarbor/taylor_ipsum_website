@@ -23,6 +23,15 @@ export default function App() {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     void refetch();
+
+    // On small screens the sheet sits below the form — bring it into view
+    if (window.matchMedia('(max-width: 899px)').matches) {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelector('.output-section')?.scrollIntoView({
+        behavior: prefersReduced ? 'auto' : 'smooth',
+        block: 'start',
+      });
+    }
   };
 
   const getOutputText = (): string => {
